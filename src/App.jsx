@@ -1,33 +1,27 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import SearchResults from './SearchResults/SearchResults'
+import Playlist from './Playlist/Playlist'
+//import Track from './Track/Track'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+function App() {
+  const [ searchResults, addSearchResults ] = useState([{ id: '1', name: 'Bohemian Rhapsody', artist: 'Queen', album: 'A Night at the Opera' }]);
+  const [ playlistTracks, addPlaylistTracks ] = useState([]);
+
+  function addTrack(track) {
+    if (playlistTracks.some(t => t.id === track.id)) {
+      return track
+    } else {
+      addPlaylistTracks(playlistTracks => [...playlistTracks, track])
+    }
+  }
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <SearchResults searchResults={searchResults} onAdd={addTrack}/>
+      <div data-testid="playlist-section">
+        <Playlist playlistTracks={playlistTracks}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
