@@ -1,10 +1,11 @@
 import Tracklist from '../Tracklist/Tracklist'
 
-function Playlist({playlistName, playlistTracks}) {
+function Playlist({playlistName, playlistTracks, onNameChange, onRemove}) {
+  const nameChange = (e) => onNameChange(e.target.value);
   return (
     <>
-      <p>{playlistName}</p>
-      <Tracklist tracks={playlistTracks}/>
+      <input value={playlistName} onChange={nameChange}/>
+      <Tracklist tracks={playlistTracks} onRemove={onRemove}/>
     </>
   )
 }
