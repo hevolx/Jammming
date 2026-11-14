@@ -4,7 +4,7 @@ function Playlist({playlistName, playlistTracks, onNameChange, onRemove}) {
   const nameChange = (e) => onNameChange(e.target.value);
   return (
     <>
-      <input value={playlistName} onChange={nameChange}/>
+      <input className="playlist-name" value={playlistName} onChange={nameChange}/>
       <Tracklist tracks={playlistTracks} onRemove={onRemove}/>
     </>
   )

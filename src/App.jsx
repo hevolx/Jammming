@@ -39,14 +39,20 @@ function App() {
   }
 
   return (
-    <>
-      <SearchResults searchResults={searchResults} onAdd={addTrack}/>
-      <div data-testid="playlist-section">
-        <Playlist playlistTracks={playlistTracks} playlistName={playlistName} onNameChange={onNameChange} onRemove={removeTrack}/>
-        <button onClick={handleSave}>Save</button>
-      </div>
+    <main className="app">
+      <h1>Ja<span>mmm</span>ing</h1>
       <SearchBar onSearch={onSearch}/>
-    </>
+      <div className="columns">
+        <section className="panel">
+          <h2>Results</h2>
+          <SearchResults searchResults={searchResults} onAdd={addTrack}/>
+        </section>
+        <section className="panel" data-testid="playlist-section">
+          <Playlist playlistTracks={playlistTracks} playlistName={playlistName} onNameChange={onNameChange} onRemove={removeTrack}/>
+          <button className="save" onClick={handleSave}>Save</button>
+        </section>
+      </div>
+    </main>
   )
 }
 
